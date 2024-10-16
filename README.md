@@ -25,7 +25,7 @@ This project is a **Job Scraper and Cover Letter Generator** powered by Jobspy a
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/CLGenerator.git
+    git clone https://github.com/micman123456/CLGenerator.git
     cd CLGenerator
     ```
 
