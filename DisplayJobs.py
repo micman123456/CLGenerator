@@ -97,7 +97,11 @@ def collect_user_data():
 
     print("Enter the number corresponding to your highest level of education")
     print("1. High School 2. Community College 3. Undergraduate Degree 4. Master's Degree")
-    uinput = int(input("Enter the number corresponding to your education level: \n"))
+    uinput = input("Enter the number corresponding to your education level: \n")
+    if not uinput.isdigit():
+        uinput = 0
+    else:
+         uinput = int(uinput)
 
     match uinput:
         case 1:
@@ -122,7 +126,7 @@ def collect_user_data():
     return data
 
 def save_user_data(data):
-    with open('user.json', 'w') as file:
+    with open('user/user.json', 'w') as file:
         json.dump(data, file, indent=4)
     print("Data saved successfully.")
 
@@ -206,7 +210,7 @@ def main():
         # Attempt to fetch again.
         with open('user/user.json', 'r') as file:
     
-            if os.stat('user.json').st_size == 0:
+            if os.stat('user/user.json').st_size == 0:
                 data = {}
                 print("An Error has occurred. Please recreate the user.json file.\n")
                 return
@@ -292,14 +296,14 @@ def main():
                 return
                 
             
-            uinput = int(uinput)
+            jobNumber = int(uinput)
             
-            job = jobs.iloc[uinput]
+            job = jobs.iloc[jobNumber]
 
         print(f"Generating cover letter for {job.iloc[TITLE]} at {job.iloc[COMPANY]}")
         print(f"Please wait...")
 
-        prompt = Construct_llama_Prompt(data, jobs.iloc[uinput])
+        prompt = Construct_llama_Prompt(data, jobs.iloc[jobNumber])
         
         dot_thread = threading.Thread(target=print_dots)
         dot_thread.start()
